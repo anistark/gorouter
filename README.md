@@ -1,11 +1,7 @@
 GoRouter
 =======
 
-GoRouter
-
-## Installation
-
-`go get github.com/anistark/gorouter`
+## Installation `go get github.com/anistark/gorouter`
 
 
 ## Personalisation in progress
@@ -13,5 +9,7 @@ GoRouter
 
 ####################################################################
 
-[Forked](https://github.com/acmacalister/helm)
+
+
+[Intial Fork](https://github.com/acmacalister/helm)
 
