@@ -38,7 +38,7 @@ func barMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bo
 
 func authMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bool {
 	fmt.Println("Doing Auth here")
-	u := user{name: "Ani"}
+	u := user{name: r.URL.Query().Get("name")}
 	fmt.Printf("%x\n", &u.name)
 	gorouter.Set(r, "user", u)
 	return true
@@ -62,7 +62,7 @@ func users(w http.ResponseWriter, r *http.Request, params url.Values) {
 	u := gorouter.Get(r, "user").(user)
 	fmt.Printf("%x\n", &u.name)
 	fmt.Println("user is: ", u.name)
-	fmt.Fprint(w, "Users!\n")
+	fmt.Fprint(w, "user is: ", u.name)
 }
 
 func userShow(w http.ResponseWriter, r *http.Request, params url.Values) {
