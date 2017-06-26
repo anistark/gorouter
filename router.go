@@ -54,7 +54,7 @@ func New(rootHandler Handle) *Router {
 
 // EnableLogging sets logging to supplied writer.
 func (r *Router) EnableLogging(w io.Writer) {
-	r.l = log.New(w, "[gorouter] ", 0)
+	r.l = log.New(w, "[anistark-gorouter] ", 0)
 	r.LoggingEnabled = true
 }
 
@@ -124,12 +124,12 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	defer clear(req)
 	cw := w
 	if r.LoggingEnabled {
-		r.l.Printf("Started %s %s", req.Method, req.URL.Path)
+		r.l.Printf("Requested %s %s", req.Method, req.URL.Path)
 		cw = &responseWriter{w, 200}
 		start := time.Now()
 		defer func(time.Time) {
 			status := cw.(*responseWriter).status
-			r.l.Printf("Completed %d %s in %v", status, http.StatusText(status), time.Since(start))
+			r.l.Printf("Responded %d %s in %v", status, http.StatusText(status), time.Since(start))
 		}(start)
 	}
 

@@ -38,19 +38,19 @@ func barMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bo
 
 func authMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bool {
 	fmt.Println("Doing Auth here")
-	u := user{name: "Alan"}
+	u := user{name: "Ani"}
 	fmt.Printf("%x\n", &u.name)
 	gorouter.Set(r, "user", u)
 	return true
 }
 
 func fallThrough(w http.ResponseWriter, r *http.Request, params url.Values) {
-	http.Error(w, "You done messed up A-aron", http.StatusNotFound)
+	http.Error(w, "For your safety, do not push it.", http.StatusNotFound)
 }
 
 func test(w http.ResponseWriter, r *http.Request, params url.Values) {
 	fmt.Println(params)
-	fmt.Fprintf(w, "Hi there")
+	fmt.Fprintf(w, "Hello World!")
 }
 
 func root(w http.ResponseWriter, r *http.Request, params url.Values) {
