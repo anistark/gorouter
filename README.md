@@ -11,5 +11,5 @@ GoRouter
 
 
 
-[Intial Fork](https://github.com/acmacalister/helm)
+[Initial Fork](https://github.com/acmacalister/helm)
 
