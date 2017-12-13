@@ -16,8 +16,8 @@ type user struct {
 func main() {
 	r := gorouter.New(fallThrough)                         // Our fallthrough route.
 	r.Use(fooMiddleware, barMiddleware, gorouter.Static()) // add global/router level middleware to run on every route.
-	r.Handle("GET", "/", root)
-	r.Handle("GET", "/users", users, authMiddleware) // local/route specific middleware that only runs on this route.
+	r.GET("/", root)
+	r.GET("/users", users, authMiddleware)
 	r.GET("/users/edit", root)
 	r.EnableLogging(os.Stdout)
 	r.Run(":8080")
@@ -37,7 +37,7 @@ func barMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bo
 }
 
 func authMiddleware(w http.ResponseWriter, r *http.Request, params url.Values) bool {
-	fmt.Println("Doing Auth here")
+	// fmt.Println("Doing Auth here")
 	u := user{name: r.URL.Query().Get("name")}
 	fmt.Printf("%x\n", &u.name)
 	gorouter.Set(r, "user", u)
